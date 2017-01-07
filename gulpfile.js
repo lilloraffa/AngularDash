@@ -11,10 +11,11 @@ var gulp = require('gulp'),
     minifyHTML = require('gulp-htmlmin');
 
 var paths = {
-    scripts: 'src/js/**/*.*',
-    styles: 'src/less/**/*.*',
-    images: 'src/img/**/*.*',
-    templates: 'src/templates/**/*.html',
+    scripts: ['src/js/**/*.*', 'src/apps/*/js/*.*'],
+    styles: ['src/less/**/*.*', 'src/apps/*/less/*.*'],
+    images: ['src/img/**/*.*', 'src/apps/*/img/*.*'],
+    templates: ['src/templates/**/*.html'],
+    apps: ['src/apps/*/*.html'],
     index: 'src/index.html',
     bower_fonts: 'src/components/**/*.{ttf,woff,eof,svg}',
 };
@@ -47,7 +48,7 @@ gulp.task('copy-bower_fonts', function() {
 /**
  * Handle custom files
  */
-gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-less', 'custom-templates']);
+gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-less', 'custom-templates', 'custom-apps']);
 
 gulp.task('custom-images', function() {
     return gulp.src(paths.images)
@@ -73,6 +74,12 @@ gulp.task('custom-templates', function() {
         .pipe(gulp.dest('dist/templates'));
 });
 
+gulp.task('custom-apps', function() {
+    return gulp.src(paths.apps)
+        .pipe(minifyHTML())
+        .pipe(gulp.dest('dist/apps'));
+});
+
 /**
  * Watch custom files
  */
@@ -81,6 +88,7 @@ gulp.task('watch', function() {
     gulp.watch([paths.styles], ['custom-less']);
     gulp.watch([paths.scripts], ['custom-js']);
     gulp.watch([paths.templates], ['custom-templates']);
+    gulp.watch([paths.apps], ['custom-apps']);
     gulp.watch([paths.index], ['usemin']);
 });
 

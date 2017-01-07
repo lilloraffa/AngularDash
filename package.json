@@ -1,10 +1,9 @@
 {
   "name": "rdash-angular",
   "version": "0.0.1",
-  "author": "Elliot Hesp",
+  "author": "Raffaele Lillo",
   "contributors": [
-    "Leonel Samayoa <leonel.e.samayoa@gmail.com> (http://gobliip.com)",
-    "Ricardo Pascua <rdpascua@outlook.com>"
+    "Raffaele Lillo <raffaele.lillo@gmail.com> (http://raffaelelillo.com)",
   ],
   "devDependencies": {
     "bower": "^1.3.9",

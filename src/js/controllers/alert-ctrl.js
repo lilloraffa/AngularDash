@@ -14,6 +14,8 @@ function AlertsCtrl($scope) {
         type: 'danger',
         msg: 'Found a bug? Create an issue with as many details as you can.'
     }];
+    //Remove default msg
+    $scope.alerts = [];
 
     $scope.addAlert = function() {
         $scope.alerts.push({

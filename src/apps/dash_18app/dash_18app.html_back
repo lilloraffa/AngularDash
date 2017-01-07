@@ -1,0 +1,136 @@
+<div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+  <div class="col-xs-12">
+    <uib-alert data-ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+  </div>
+</div>
+
+<div class="row"  ng-controller="Dash_18app_viewhl_Ctrl">
+	<div class="col-lg-2 col-lg-offset-1 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon green pull-left">
+					<i class="fa fa-users"></i>
+				</div>
+				<div class="title">{{dataTotUser.kpi | number}}</div>
+				<div class="comment">({{(dataTotUser.kpi/dataTotUser.kpi_1w_ago -1)*100 | number:1}}% prog)</div>
+        <div class="comment">Tot Users</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+	<div class="col-lg-2 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon red pull-left">
+					<i class="fa fa-tasks"></i>
+				</div>
+        <div class="title">{{dataPercDiritto.kpi*100 | number:1}}%</div>
+				<div class="comment">({{(dataPercDiritto.kpi/dataPercDiritto.kpi_1w_ago -1)*100 | number:1}}% wow)</div>
+        <div class="comment">% Aventi Diritto</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+
+	<div class="col-lg-2 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon orange pull-left">
+					<i class="fa fa-sitemap"></i>
+				</div>
+        <div class="title">{{dataTotValidValOnline.kpi | number}}</div>
+				<div class="comment">({{(dataTotValidValOnline.kpi/dataTotValidValOnline.kpi_1w_ago -1)*100 | number:1}}% w prog)</div>
+        <div class="comment">Tot Acq. Online</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+	<div class="col-lg-2 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon blue pull-left">
+					<i class="fa fa-support"></i>
+				</div>
+        <div class="title">{{dataTotValidValFisico.kpi | number}}</div>
+				<div class="comment">({{(dataTotValidValFisico.kpi/dataTotValidValFisico.kpi_1w_ago -1)*100 | number:1}}% w prog)</div>
+        <div class="comment">Tot Acq. Fisico</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+  <div class="col-lg-2 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-body>
+				<div class="widget-icon blue pull-left">
+					<i class="fa fa-support"></i>
+				</div>
+        <div class="title">{{(dataTotShopFisico.kpi + dataTotShopOnline.kpi)  | number}}</div>
+				<div class="comment">di cui {{dataTotShopOnline.kpi | number}} Online</div>
+        <div class="comment">Tot Shops</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6" ng-controller="Dash_18app_graph_ts_user_new_Ctrl">
+		<rd-widget>
+      		<rd-widget-header icon="fa-tasks" title="Nuovi Iscritti">
+				<a href="#">Nuovi Iscritti</a>
+      		</rd-widget-header>
+      		<rd-widget-body>
+            <graph-ts-line idchart='chartTSNewUser' chart-data='ts_user_new'><div id="chartTSNewUser"></div></graph-ts-line>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+  <div class="col-lg-6" ng-controller="Dash_18app_graph_ts_valid_val_Ctrl">
+		<rd-widget>
+      		<rd-widget-header icon="fa-tasks" title="Acquisti">
+				<a href="#">Acquisti</a>
+      		</rd-widget-header>
+      		<rd-widget-body>
+            <graph-ts-line idchart='chartTSValidVal' chart-data='ts_valid_val'><div id="chartTSValidVal"></div></graph-ts-line>
+      </rd-widget-body>
+		</rd-widget>
+	</div>
+
+<div class="row">
+	<div class="col-lg-6" ng-controller="Dash_18app_graph_donut_prod_Ctrl">
+   		<rd-widget>
+   			<rd-widget-header icon="fa-plus" title="Acquisti per Tipologia">
+   				<button class="btn btn-sm btn-info">Button</button>
+   			</rd-widget-header>
+   			<rd-widget-body>
+          <graph-donut idchart='chartDonutProd' chart-data='donut_prod' chart-title='donut_prod_title'><div id="chartDonutProd"></div></graph-donut>
+   			</rd-widget-body>
+   		</rd-widget>
+	</div>
+	<div class="col-lg-6" ng-controller="Dash_18app_graph_donut_shops_Ctrl">
+		<rd-widget>
+			<rd-widget-header icon="fa-cog fa-spin" title="Top 10 Shops">
+			</rd-widget-header>
+			<rd-widget-body>
+				<graph-donut idchart='chartDonutShops' chart-data='donut_shops' chart-title="donut_shops_title"><div id="chartDonutShops"></div></graph-donut>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6" ng-controller="Dash_18app_graph_bar_reg_aventidir_Ctrl">
+   		<rd-widget>
+   			<rd-widget-header icon="fa-plus" title="% 18enni Attivi per Regione">
+   				<button class="btn btn-sm btn-info">Button</button>
+   			</rd-widget-header>
+   			<rd-widget-body>
+          <graph-bar-or idchart='chartBarRegAventiDir' chart-data='bar_reg_aventidir' size-height='500'><div id='test' class='test01'><div id="chartBarRegAventiDir"></div></div></graph-bar-or>
+   			</rd-widget-body>
+   		</rd-widget>
+	</div>
+  <div class="col-lg-6" ng-controller="Dash_18app_graph_bar_prov_aventidir_Ctrl">
+   		<rd-widget>
+   			<rd-widget-header icon="fa-plus" title="% 18enni Attivi per Provincia (Top/Least 10)">
+   				<button class="btn btn-sm btn-info">Button</button>
+   			</rd-widget-header>
+   			<rd-widget-body>
+          <graph-bar-or idchart='chartBarProvAventiDir' chart-data='bar_prov_aventidir' size-height='500'><div id='test' class='test01'><div id="chartBarProvAventiDir"></div></div></graph-bar-or>
+   			</rd-widget-body>
+   		</rd-widget>
+	</div>
+</div>
